@@ -1,90 +1,96 @@
-# 计算机视觉目标检测项目
+# 视频目标检测与追踪系统
 
-这是一个基于OpenCV的目标检测项目，使用Flask作为后端框架，实现了三种不同的目标检测算法。
+这是一个基于OpenCV和Flask的视频目标检测与追踪系统，支持多种目标的实时检测和追踪。
+
+## 功能特性
+
+- 支持多种目标检测：
+  - 行人检测
+  - 车辆检测
+  - 小狗检测（柯基犬）
+- 多目标追踪能力：
+  - 支持同时追踪多个目标
+  - 智能目标管理，避免重复追踪
+  - 自动处理目标丢失和新增
+- 实时视频处理：
+  - 支持多种视频格式（MP4, AVI, MOV）
+  - 实时显示检测和追踪结果
+
+## 技术栈
+
+- 后端：
+  - Python 3.x
+  - Flask 2.0.1
+  - OpenCV 4.5.3
+  - NumPy 1.21.2
+- 前端：
+  - Vue.js
+  - HTML5
+  - CSS3
+
+## 安装说明
+
+1. 克隆项目：
+```bash
+git clone https://github.com/nilahd/opencv.git
+```
+
+2. 创建虚拟环境（推荐）：
+```bash
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+venv\Scripts\activate     # Windows
+```
+
+3. 安装依赖：
+```bash
+pip install -r requirements.txt
+```
+
+## 使用方法
+
+1. 启动后端服务：
+```bash
+python app.py
+```
+服务将在 http://localhost:5000 启动
+
+2. 启动前端服务：
+```bash
+cd web/demo
+npm install
+npm run serve
+```
+前端服务将在 http://localhost:8080 启动
+
+3. 使用系统：
+   - 打开浏览器访问 http://localhost:8080
+   - 上传视频文件
+   - 选择目标类型（行人/车辆/动物）
+   - 点击处理按钮
+   - 等待处理完成后下载结果视频
 
 ## 项目结构
 
 ```
 .
-├── app.py              # Flask后端主程序
-├── requirements.txt    # 项目依赖
-├── web                 # 前端目录
-├── detectors/          # 目标检测算法目录
-│   ├── human_detector.py  # 人检测器
-│   ├── dog_detector.py    # 狗检测器
-│   └── car_detector.py    # 汽车检测器
-├── uploads/           # 上传文件目录
-└── outputs/           # 输出文件目录
+├── app.py                 # Flask后端主程序
+├── requirements.txt       # Python依赖
+├── detectors/            # 检测器模块
+│   ├── human_detector.py # 行人检测器
+│   ├── car_detector.py   # 车辆检测器
+│   └── dog_detector.py   # 动物检测器
+├── web/                  # 前端代码
+│   └── demo/            # Vue.js项目
+├── uploads/             # 上传文件目录
+└── outputs/             # 输出文件目录
 ```
 
-## 环境要求
-
-- Python 3.7+
-- OpenCV 4.5.3
-- Flask 2.0.1
-- NumPy 1.21.2
-- Vue3
-
-## 安装
-
-1. 克隆项目
-```bash
-https://github.com/nilahd/opencv.git
-```
-2. 安装依赖：
-```bash
-pip install -r requirements.txt
-```
-
-## 运行
-
-```bash
-python app.py
-```
-
-服务器将在 http://localhost:5000 启动。
-
-## API文档
-
-### 处理视频
-
-**URL**: `/process_video`
-
-**方法**: POST
-
-**请求参数**:
-- `video`: 视频文件（支持mp4, avi, mov格式）
-- `target_type`: 目标类型（human/dog/car）
-
-**响应**:
-- 成功：返回处理后的视频文件
-- 失败：返回错误信息
-
-**示例请求**:
-```bash
-curl -X POST -F "video=@test.mp4" -F "target_type=human" http://localhost:5000/process_video
-```
-
-## 算法说明
-
-1. 人检测器（HumanDetector）：
-   - 使用HSV颜色空间和轮廓检测
-   - 通过肤色特征识别人体
-   - 使用形态学操作优化检测结果
-
-2. 狗检测器（DogDetector）：
-   - 使用KCF（Kernelized Correlation Filters）目标追踪
-   - 通过肤色特征识别
-   - 支持追踪失败后重新选择
-
-3. 汽车检测器（CarDetector）：
-   - 使用KCF（Kernelized Correlation Filters）目标追踪
-   - 基于特征点检测和追踪
-   - 显示目标运动轨迹
 
 ## 注意事项
 
-1. 视频文件大小限制：默认无限制，可根据需要修改
-2. 支持的视频格式：mp4, avi, mov
-3. 处理大视频文件可能需要较长时间
-4. 确保有足够的磁盘空间存储上传和处理后的视频 
+1. 确保系统已安装Python 3.x
+2. 视频文件大小建议不超过100MB
+3. 处理时间取决于视频长度和复杂度
+4. 建议使用现代浏览器访问系统
+
