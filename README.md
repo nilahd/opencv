@@ -1,3 +1,11 @@
+<!--
+ * @Author: Coisini 3059421373@qq.com
+ * @Date: 2025-04-27 11:09:46
+ * @LastEditors: Coisini 3059421373@qq.com
+ * @LastEditTime: 2025-04-28 10:40:20
+ * @FilePath: \git\README.md
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 # 视频目标检测与追踪系统
 
 这是一个基于OpenCV和Flask的视频目标检测与追踪系统，支持多种目标的实时检测和追踪。
@@ -93,4 +101,5 @@ npm run serve
 2. 视频文件大小建议不超过100MB
 3. 处理时间取决于视频长度和复杂度
 4. 建议使用现代浏览器访问系统
+5. 配置前端开发环境
 
